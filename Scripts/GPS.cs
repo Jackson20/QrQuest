@@ -10,11 +10,10 @@ public class GPS : MonoBehaviour
     public float initX;
     public float initZ;
 
-    private float m_latitude;
-    private float m_longitude;
     private float m_newPosX;
     private float m_newPosZ;
     private float m_defaultPosY = 1f;
+    private int m_updateRateInSeconds = 5 * 60;
 
     private void Start()
     {
@@ -57,11 +56,8 @@ public class GPS : MonoBehaviour
         }
 
         //Set Position
-        m_latitude = Input.location.lastData.latitude;
-        m_longitude = Input.location.lastData.longitude;
-
-        initX = (float)((m_longitude * 20037508.34 / 180) / 100);
-        initZ = (float)(System.Math.Log(System.Math.Tan((90 + m_latitude) * System.Math.PI / 360)) / (System.Math.PI / 180));
+        initX = (float)((Input.location.lastData.longitude * 20037508.34 / 180) / 100);
+        initZ = (float)(System.Math.Log(System.Math.Tan((90 + Input.location.lastData.latitude) * System.Math.PI / 360)) / (System.Math.PI / 180));
         initZ = (float)((initZ * 20037508.34 / 180) / 100);
 
         gpsFix = true;
@@ -71,12 +67,12 @@ public class GPS : MonoBehaviour
 
     private void Update()
     {
-        if (gpsFix)
+        if (gpsFix && (Time.frameCount % m_updateRateInSeconds == 0))
         {
-            m_newPosX = (float)(((m_longitude * 20037508.34 / 180) / 100) - initX);
-            m_newPosZ = (float)(System.Math.Log(System.Math.Tan((90 + m_latitude) * System.Math.PI / 360)) / (System.Math.PI / 180));
+            m_newPosX = (float)(((Input.location.lastData.longitude * 20037508.34 / 180) / 100) - initX);
+            m_newPosZ = (float)(System.Math.Log(System.Math.Tan((90 + Input.location.lastData.latitude) * System.Math.PI / 360)) / (System.Math.PI / 180));
             m_newPosZ = (float)(((m_newPosZ * 20037508.34 / 180) / 100) - initZ);
-            
+
             transform.position = new Vector3(m_newPosX * scaleFactor, m_defaultPosY, m_newPosZ * scaleFactor);
         }
     }
