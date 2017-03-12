@@ -18,7 +18,7 @@ public class ModelGameplay : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "PlayerRadius")
+        if (other.name == "Player")
         {
             transform.localScale = m_defaultLocalScale;
         }
