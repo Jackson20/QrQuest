@@ -19,7 +19,6 @@ public class LoadPokemonData : MonoBehaviour
 
         while (!GPS.gpsFix)
         {
-            Debug.Log("Wait!");
             yield return null;
         }
 
@@ -67,20 +66,4 @@ public class LoadPokemonData : MonoBehaviour
            // PokemonHelpers.Add(pokemonHelper);
         }
     }
-
-
-    //internal void DestroyPokemon(PokemonModel myPokemonModel)
-    //{
-    //    PokemonHelper remove = null;
-    //    foreach (var item in PokemonHelpers)
-    //    {
-    //        if (item.MyPokemonModel.Id == myPokemonModel.Id)
-    //        {
-    //            remove = item;
-    //        }
-    //    }
-
-    //    Destroy(remove.gameObject);
-    //    PokemonHelpers.Remove(remove);
-    //}
 }

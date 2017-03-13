@@ -18,9 +18,14 @@ public class ModelGameplay : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player")
+        if (other.name == "PlayerRadius")
         {
             transform.localScale = m_defaultLocalScale;
+        }
+        else if (other.name == "PlayerHand")
+        {
+           // transform.localScale = new Vector3(0, 0, 0);
+            Destroy(gameObject);
         }
     }
 }
