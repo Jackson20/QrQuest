@@ -4,6 +4,7 @@ public class ModelGameplay : MonoBehaviour
 {
     private Model m_model { get; set; }
     private Vector3 m_defaultLocalScale;
+    private bool isTouch = false;
 
     private void Start()
     {
@@ -22,10 +23,25 @@ public class ModelGameplay : MonoBehaviour
         {
             transform.localScale = m_defaultLocalScale;
         }
-        else if (other.name == "PlayerHand")
-        {
-           // transform.localScale = new Vector3(0, 0, 0);
-            Destroy(gameObject);
-        }
+    }
+
+    private void OnMouseDown()
+    {
+        isTouch = true;
+    }
+
+    private void OnMouseExit()
+    {
+        isTouch = false;
+    }
+
+    private void OnMouseUp()
+    {
+        isTouch = false;
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(10, 200, 200, 40), "isTouch = " + isTouch);
     }
 }
