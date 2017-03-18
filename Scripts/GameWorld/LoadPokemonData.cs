@@ -7,7 +7,7 @@ using System;
 public class LoadPokemonData : MonoBehaviour
 {
     public string URL;
-    public GameObject[] ModelsPrefabs;
+    public GameObject ModelPrefabs;
     public List<Model> Models { get; set; }
     //public List<PokemonHelper> PokemonHelpers { get; set; }
 
@@ -41,8 +41,6 @@ public class LoadPokemonData : MonoBehaviour
         foreach (XElement item in elements)
         {
             Model newModel = new Model();
-            int type = System.Convert.ToInt32(item.Attribute("type").Value);
-            newModel.type = (ETypes)type;
             newModel.ID = System.Convert.ToInt32(item.Attribute("id").Value);
             newModel.lat = System.Convert.ToSingle(item.Attribute("lat").Value);
             newModel.lon = System.Convert.ToSingle(item.Attribute("lon").Value);
@@ -55,7 +53,7 @@ public class LoadPokemonData : MonoBehaviour
         // Instantiating
         foreach (var item in Models)
         {
-            GameObject model = Instantiate(ModelsPrefabs[(int)item.type]);
+            GameObject model = Instantiate(ModelPrefabs);
 
             SetGPSdata setGPSdata = model.GetComponent<SetGPSdata>();
             setGPSdata.SetLocation(item.lat, item.lon);
