@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 public class LogIn : MonoBehaviour
 {
-    public Text username;
-    public Text password;
+    public InputField username;
+    public InputField password;
     public GameObject errorText;
 
     public void LogInUser()
@@ -26,10 +26,11 @@ public class LogIn : MonoBehaviour
         while (!www.isDone)
         {
             Debug.Log("while");
+            Debug.Log(URL);
             yield return null;
         }
 
-        if (!string.IsNullOrEmpty(www.error))
+        if (!string.IsNullOrEmpty(www.error) || password.text.Length == 0)
         {
             //Response res = new Response();
             //res.data = new Data();

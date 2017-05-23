@@ -79,8 +79,8 @@ public class GPS : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 200, 40), "latitude " + transform.position.x);
-        GUI.Label(new Rect(10, 40, 200, 40), "longitude " + transform.position.z);
+        GUI.Label(new Rect(10, 10, 200, 40), "latitude " + Input.location.lastData.latitude);
+        GUI.Label(new Rect(10, 40, 200, 40), "longitude " + Input.location.lastData.longitude);
         GUI.Label(new Rect(10, 70, 200, 40), "transform.rotation.x = " + transform.rotation.x);
         GUI.Label(new Rect(10, 100, 200, 40), "transform.rotation.y = " + transform.rotation.y);
         GUI.Label(new Rect(10, 130, 200, 40), "transform.rotation.z = " + transform.rotation.z);

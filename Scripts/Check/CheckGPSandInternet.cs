@@ -12,13 +12,11 @@ public class CheckGPSandInternet : MonoBehaviour
     {
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
-            Debug.Log("Error. Check internet connection!");
             Message.text = InternetMessage;
             WarningScreen.SetActive(true);
         }
         else if (!Input.location.isEnabledByUser)
         {
-            Debug.Log("Error. Check GPS connection!");
             Message.text = GPSMessage;
             WarningScreen.SetActive(true);
         }

@@ -28,6 +28,7 @@ public class ModelGameplay : MonoBehaviour
     private void OnMouseDown()
     {
         isTouch = true;
+        DestroyObject(this.gameObject);
     }
 
     private void OnMouseExit()
